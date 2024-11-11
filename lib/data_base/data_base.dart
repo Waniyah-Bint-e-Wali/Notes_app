@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import'package:path/path.dart';
 import'package:sqflite/sqflite.dart';
 class DataBaseService{
@@ -41,7 +40,6 @@ class DataBaseService{
       _notestitle:Title,
       _notesdec: Description
     });
-    print('----->>>>> inserted');
   }
   Future<List<User>> getUserList() async {
     final db = await get_dataBase;

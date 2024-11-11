@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:notes_ap/data_base/data_base.dart';
+import 'package:notes_ap/second_page.dart';
 class SecondPage extends StatelessWidget {
+  final _databaseinstance=DataBaseService.instance;
+  final TextEditingController _titlecontroller=TextEditingController();
+  final TextEditingController _Descriptioncontroller=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +29,7 @@ class SecondPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextField(
+                      controller:_titlecontroller,
                       style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold),
                       decoration: const InputDecoration(
                         hintText: 'Title',
@@ -38,6 +43,7 @@ class SecondPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextField(
+                      controller:_Descriptioncontroller,
                       style: TextStyle(fontSize: 30,fontWeight:FontWeight.bold),
                       decoration: const InputDecoration(
                         hintText: 'Description',
@@ -55,7 +61,36 @@ class SecondPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(11),
                     ),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        String title = _titlecontroller.text;
+                        String description = _Descriptioncontroller.text;
+
+                        // Inserting into database
+                        _databaseinstance.insertUser(title, description);
+                        print('Data inserted: Title: $title, Description: $description');
+                        //clearing the text fields
+                        _titlecontroller.clear();
+                        _Descriptioncontroller.clear();
+                        //showing a dialog
+                         showDialog(
+                         context: context,
+                          builder: (BuildContext context) {
+                                 return AlertDialog(
+                           title: const Text("Note Added"),
+                           content: const Text("Your note has been successfully added!"),
+                               actions: [
+                               TextButton(
+                            onPressed: () {
+                            Navigator.of(context).pop();
+                                 },
+                           child: const Text("OK"),
+                         ),
+                          ],
+                          );
+                         },
+                      );
+                         },
+
                       child: const Text(
                         "Submit",
                         style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.bold),
