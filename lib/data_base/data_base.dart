@@ -34,6 +34,7 @@ class DataBaseService{
     });
     return dataBase;
   }
+  //insertion
   void insertUser(String Title, String Description) async {
     final db = await get_dataBase;
     await db.insert(_tablename, {
@@ -41,21 +42,31 @@ class DataBaseService{
       _notesdec: Description
     });
   }
+  //fetching data
   Future<List<User>> getUserList() async {
     final db = await get_dataBase;
     final data = await db.query(_tablename);
 
     List<User> userList = data.map((e) => User(id: e["id"] as int, Title: e["Title"] as String, Description: e["Description"] as String)).toList();
 
-    userList.forEach((e) => {
+    /*userList.forEach((e) => {
       print('id: ${e.id}    Title: ${e.Title}    Description: ${e.Description}')
-    });
+    });*/
 
     return userList;
   }
+  //update
+  /*void updateUser(String title,String description)async{
+    final db=await get_dataBase;
+    await db.update(_tablename,{
+      _notestitle:title,
+      _notesdec: description
+    });
+  }*/
 }
 class User {
   int id;
+
   String Title;
   String Description;
 

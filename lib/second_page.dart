@@ -89,7 +89,7 @@ class SecondPage extends StatelessWidget {
                         _titlecontroller.clear();
                         _Descriptioncontroller.clear();
                         //showing a dialog
-                        if(title!=null && description!=null){
+                        if(title.isNotEmpty && description.isNotEmpty){
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {

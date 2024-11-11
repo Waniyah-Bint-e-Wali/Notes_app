@@ -38,7 +38,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
         title: const Text('My Notes'),
         centerTitle: true,
       ),
-      body: Center(
+      /*body: Center(
         child: FutureBuilder(
           future: dataBase.getUserList(),
           builder: (context, snapshot) {
@@ -67,7 +67,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
             );
           },
         ),
-      ),
+      ),*/
       floatingActionButton:ElevatedButton(
         onPressed:(){
           Navigator.push
