@@ -72,23 +72,44 @@ class SecondPage extends StatelessWidget {
                         _titlecontroller.clear();
                         _Descriptioncontroller.clear();
                         //showing a dialog
-                         showDialog(
-                         context: context,
-                          builder: (BuildContext context) {
-                                 return AlertDialog(
-                           title: const Text("Note Added"),
-                           content: const Text("Your note has been successfully added!"),
-                               actions: [
-                               TextButton(
-                            onPressed: () {
-                            Navigator.of(context).pop();
-                                 },
-                           child: const Text("OK"),
-                         ),
-                          ],
+                        if(title.isNotEmpty && description.isNotEmpty){
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("Note Added"),
+                                content: const Text("Your note has been successfully added!"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              );
+                            },
                           );
-                         },
-                      );
+                        }
+                        else{
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("No Note Added"),
+                                content: const Text("Kindly write the note!"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                          },
 
                       child: const Text(
