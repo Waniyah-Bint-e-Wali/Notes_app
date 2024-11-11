@@ -8,11 +8,24 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Padding (
+            padding:EdgeInsets.only(top:15),
+            child: const Text('My Notes',style:TextStyle(fontSize:40,fontWeight:FontWeight.bold))),
+        backgroundColor: Colors.greenAccent,
+        centerTitle: true,
+
+      ),
       body: Container(
-        color: Colors.greenAccent,
         width: double.infinity,
         height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.greenAccent, Colors.lightGreenAccent],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: Center(
           child: Card(
             elevation: 30,
@@ -55,10 +68,14 @@ class SecondPage extends StatelessWidget {
                   ),
                   Container(
                     width: 150,
-                    height: 80,
+                    height: 70,
                     decoration: BoxDecoration(
-                      color: Colors.greenAccent,
-                      borderRadius: BorderRadius.circular(11),
+                        gradient: LinearGradient(
+                          colors: [Colors.lightGreenAccent, Colors.greenAccent],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     child: TextButton(
                       onPressed: () {
@@ -72,7 +89,7 @@ class SecondPage extends StatelessWidget {
                         _titlecontroller.clear();
                         _Descriptioncontroller.clear();
                         //showing a dialog
-                        if(title.isNotEmpty && description.isNotEmpty){
+                        if(title!=null && description!=null){
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -97,7 +114,7 @@ class SecondPage extends StatelessWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: const Text("No Note Added"),
-                                content: const Text("Kindly write the note!"),
+                                content: const Text("Kindly write note!"),
                                 actions: [
                                   TextButton(
                                     onPressed: () {
